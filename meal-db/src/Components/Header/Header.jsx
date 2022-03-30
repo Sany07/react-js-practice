@@ -1,14 +1,16 @@
 import React from 'react';
 import './Header.css';
+import { Link } from "react-router-dom";
+
 
 const Header = (props)=> {
     return (
         <div>
             <ul className='menu-bar'>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Meals</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/search">Search</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
             </ul>
         </div>
     );
