@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {  Routes } from "react-router-dom";
 import Header from './Components/Header/Header'
 import Meals from './Components/Meal/Meals'
