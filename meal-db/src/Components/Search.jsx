@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import Meal from './Meal/Meal'
 
 const Search = () => {
 
     const [meals, setMeals] = useState([])
     const [searchText, setSearchText] = useState()
 
-    const handleSearch= async ()=>{
+    const handleSearch= async (e)=>{
+        e.preventDefault();
         try{
             let res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
             const data = await res.json();
-            console.log(data.meals)
             setMeals(data.meals)
         }
         catch(err){
@@ -23,29 +24,28 @@ const Search = () => {
     },[meals])
 
     return (
-        <div className='row'>
-            <div className="col-md-12 py-5">
-
-            <h1>Search {meals.length }</h1>
-            <Form>
+        <>
+        <div className="row">
+            <div className="col-md-12 w-50 py-5">
+                <h1>Search {meals.length }</h1>
+                <Form onSubmit={handleSearch}>
             <Form.Group className="my-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Search Your Meal</Form.Label>
-                <Form.Control type="text" placeholder="Enter Meal Name" onChange={(e)=>setSearchText(e.target.value)} />
+                <Form.Control   required type="text" placeholder="Enter Meal Name" onChange={(e)=>setSearchText(e.target.value) } />
             </Form.Group>
-            </Form>
             <Button onClick={handleSearch} variant="outline-primary">Search</Button>
+                </Form>
+            </div>
         </div>
 
+        <div className="row">
+
         { meals.map((meal)=>{
-            return(
-                <div className="col-md-4" key={meal.idMeal}>
-                    <img src={meal.strMealThumb} className="img-fluid" alt=""/>
-                    <h1>{ meal.strMeal }</h1>
-                    <h1>{ meal.strCategory }</h1>
-                </div>
-            )
+            return <Meal key={meal.strMeal} meal={meal}/>
         })}
         </div>
+        
+        </>
         
     );
 };

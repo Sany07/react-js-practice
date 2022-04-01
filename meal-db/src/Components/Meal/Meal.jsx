@@ -4,6 +4,8 @@ import "./meal.css"
 function Meal(props) {
     const { meal } = props;
     return (
+
+            <div className='col-md-4'>
             <div className='card'>
                 <img src={ meal.strMealThumb}  alt=""/>
                 <h5>
@@ -12,6 +14,7 @@ function Meal(props) {
                     }
                 </h5>
                 
+        </div>
         </div>
 
     );

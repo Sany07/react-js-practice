@@ -1,16 +1,17 @@
 import React from 'react';
 import './Header.css';
 import { Link } from "react-router-dom";
+import CustomLink from '../../CustomLink';
 
 
 const Header = (props)=> {
     return (
         <div>
             <ul className='menu-bar'>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/search">Search</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li><CustomLink to="/">Home</CustomLink></li>
+                <li><CustomLink to="/search">Search</CustomLink></li>
+                <li><CustomLink to="/about">About</CustomLink></li>
+                <li><CustomLink to="/contact">Contact</CustomLink></li>
             </ul>
         </div>
     );
