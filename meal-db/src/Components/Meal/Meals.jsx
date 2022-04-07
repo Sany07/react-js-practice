@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Meal from './Meal';
-import "./meal.css"
+import "./Meal.css"
 
 const Meals = (props)=> {
 

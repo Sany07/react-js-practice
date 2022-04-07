@@ -1,5 +1,5 @@
 import React from 'react';
-import "./meal.css"
+import "./Meal.css"
 
 function Meal(props) {
     const { meal } = props;
