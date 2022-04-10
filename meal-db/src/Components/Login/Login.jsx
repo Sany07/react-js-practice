@@ -90,9 +90,19 @@ const Login = () => {
             </Form>
           </div>
         </div>
+        <div className="mt-5">
+          <Button
+            className="me-3"
+            variant="danger"
+            onClick={handleGoogleSignIn}
+          >
+            Sign With Google
+          </Button>
+          <Button variant="warning" onClick={handleSignOut}>
+            Sign Out
+          </Button>
+        </div>
       </div>
-      <button onClick={handleGoogleSignIn}>Sign With Google</button>
-      <button onClick={handleSignOut}>Sign Out</button>
     </div>
   );
 };
