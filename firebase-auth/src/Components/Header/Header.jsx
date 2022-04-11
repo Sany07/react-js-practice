@@ -9,8 +9,16 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import app from "../../firebase.init";
+import { getAuth, signOut } from "firebase/auth";
+const auth = getAuth(app);
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <Navbar bg="light" expand="lg" className="mb-5">
       <Container>
@@ -40,10 +48,21 @@ const Header = () => {
           </Nav>
           <Form className="d-flex">
             <Nav>
-              <Link className="px-3" to="/register">
-                Register
-              </Link>
-              <Link to="/login">Login</Link>
+              {!user ? (
+                <>
+                  <Link className="px-3" to="/register">
+                    Register
+                  </Link>
+                  <Link to="/login">Login</Link>
+                </>
+              ) : (
+                <>
+                  <Navbar>{user.email}</Navbar>
+                  <Button className="ms-5" onClick={handleSignOut}>
+                    Sign out
+                  </Button>
+                </>
+              )}
             </Nav>
           </Form>
         </Navbar.Collapse>

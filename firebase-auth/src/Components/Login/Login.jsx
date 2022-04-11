@@ -26,13 +26,7 @@ const Login = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  if (user) {
-    return (
-      <div>
-        <p>Signed In User: {user.email}</p>
-      </div>
-    );
-  }
+
   return (
     <Container>
       <Row>
