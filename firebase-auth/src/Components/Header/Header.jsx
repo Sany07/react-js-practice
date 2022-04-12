@@ -8,16 +8,19 @@ import {
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import app from "../../firebase.init";
 import { getAuth, signOut } from "firebase/auth";
+
 const auth = getAuth(app);
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   const handleSignOut = () => {
     signOut(auth);
+    navigate("/login");
   };
   return (
     <Navbar bg="light" expand="lg" className="mb-5">

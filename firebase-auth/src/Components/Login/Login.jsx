@@ -1,14 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import app from "../../firebase.init";
 import { getAuth } from "firebase/auth";
-
 const auth = getAuth(app);
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -16,6 +17,9 @@ const Login = () => {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
   };
+  if (user) {
+    navigate("/home");
+  }
   if (error) {
     return (
       <div>

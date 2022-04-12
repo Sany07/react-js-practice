@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import app from "../../firebase.init";
 import { getAuth } from "firebase/auth";
+
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 const auth = getAuth(app);
 
