@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import auth from "../../firebase.init";
 
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import LoadingSpinner from "../Spinner/LoadingSpinner";
 
 const Register = () => {
   const [email, setEmail] = useState();
@@ -23,7 +24,7 @@ const Register = () => {
     );
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner />;
   }
   if (user) {
     return (
@@ -43,6 +44,7 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="Enter email"
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -55,13 +57,12 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
+                required
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+
             <Button variant="primary" type="submit">
-              Login
+              Register
             </Button>
           </Form>
         </Col>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import LoadingSpinner from "../Spinner/LoadingSpinner";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -30,7 +31,7 @@ const Login = () => {
     );
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   return (
