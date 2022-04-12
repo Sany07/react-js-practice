@@ -10,10 +10,8 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import app from "../../firebase.init";
-import { getAuth, signOut } from "firebase/auth";
-
-const auth = getAuth(app);
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
   const [user] = useAuthState(auth);
