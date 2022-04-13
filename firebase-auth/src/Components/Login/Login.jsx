@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import LoadingSpinner from "../Spinner/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -20,15 +21,30 @@ const Login = () => {
   };
   if (user) {
     if (user) {
+      toast.success("Login Success!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: "success1",
+      });
       navigate(from, { replace: true });
     }
   }
   if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
+    toast.error("Login Faild!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "login-error",
+    });
   }
   if (loading) {
     return <LoadingSpinner />;
@@ -38,6 +54,14 @@ const Login = () => {
     <Container>
       <Row>
         <Col md={6} className="mx-auto">
+          {error ? (
+            <div>
+              <p>Error: {error.message}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

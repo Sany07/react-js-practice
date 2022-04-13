@@ -7,12 +7,13 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import RequireAuth from "./Utilities/RequireAuth";
+import Toaster from "./Components/Toast/Toaster";
 
 function App() {
   return (
     <>
       <Header />
-
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

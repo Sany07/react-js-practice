@@ -4,11 +4,15 @@ import auth from "../../firebase.init";
 
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import LoadingSpinner from "../Spinner/LoadingSpinner";
+import { toast } from "react-toastify";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -16,27 +20,46 @@ const Register = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(email, password);
   };
-  if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
-  }
+
   if (loading) {
     return <LoadingSpinner />;
   }
   if (user) {
-    return (
-      <div>
-        <p>Registered User: {console.log(user.user.email)}</p>
-      </div>
-    );
+    toast.success("Registration Success!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "success1",
+    });
+    navigate(from, { replace: true });
+  }
+  if (error) {
+    toast.error("Registration Faild!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "error",
+    });
   }
   return (
     <Container>
       <Row>
         <Col md={6} className="mx-auto">
+          {error ? (
+            <div>
+              <p>Error: {error.message}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
