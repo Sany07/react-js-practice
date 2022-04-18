@@ -69,6 +69,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="Enter email"
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -81,6 +82,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
